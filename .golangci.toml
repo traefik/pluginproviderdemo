@@ -32,6 +32,7 @@
   enable-all = true
   disable = [
     "testpackage",
+    "paralleltest",
     "goerr113",
     "nlreturn",
     "exhaustivestruct",
@@ -46,3 +47,7 @@
   max-per-linter = 0
   max-same-issues = 0
   exclude = []
+
+  [[issues.exclude-rules]]
+    path = "(.+)_test.go"
+    linters = ["goconst", "funlen", "godot"]

@@ -1,0 +1,9 @@
+displayName: Provider Plugin Demo
+type: provider
+
+import: github.com/traefik/pluginproviderdemo
+
+summary: '[Demo] Simple Provider Plugin'
+
+testData:
+  pollInterval: 5s
