@@ -1,0 +1,5 @@
+# github.com/traefik/genconf v0.0.0-20210122120711-a2bf09240729
+## explicit
+github.com/traefik/genconf/dynamic
+github.com/traefik/genconf/dynamic/tls
+github.com/traefik/genconf/dynamic/types
