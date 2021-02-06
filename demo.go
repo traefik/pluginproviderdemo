@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/traefik/genconf/dynamic"
@@ -59,6 +60,12 @@ func (p *Provider) Provide(cfgChan chan<- json.Marshaler) error {
 	p.cancel = cancel
 
 	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				log.Print(err)
+			}
+		}()
+
 		p.loadConfiguration(ctx, cfgChan)
 	}()
 
@@ -72,12 +79,9 @@ func (p *Provider) loadConfiguration(ctx context.Context, cfgChan chan<- json.Ma
 	for {
 		select {
 		case t := <-ticker.C:
-			configuration := &dynamic.JSONPayload{Configuration: generateConfiguration(t)}
+			configuration := generateConfiguration(t)
 
-			// this line is required by Yaegi because of a bug https://github.com/traefik/yaegi/issues/1010
-			var cfg json.Marshaler = configuration
-
-			cfgChan <- cfg
+			cfgChan <- &dynamic.JSONPayload{Configuration: configuration}
 
 		case <-ctx.Done():
 			return
