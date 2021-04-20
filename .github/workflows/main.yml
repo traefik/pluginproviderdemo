@@ -14,9 +14,9 @@ jobs:
     name: Main Process
     runs-on: ubuntu-latest
     env:
-      GO_VERSION: 1.15
-      GOLANGCI_LINT_VERSION: v1.35.2
-      YAEGI_VERSION: v0.9.12
+      GO_VERSION: 1.16
+      GOLANGCI_LINT_VERSION: v1.39.0
+      YAEGI_VERSION: v0.9.17
       CGO_ENABLED: 0
     defaults:
       run:
