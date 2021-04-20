@@ -30,12 +30,12 @@ pilot:
 experimental:
   plugins:
     example:
-      moduleName:github.com/traefik/pluginproviderdemo
+      moduleName: github.com/traefik/pluginproviderdemo
       version: v0.1.0
 
 providers:
   plugin:
-    dev:
+    example:
       pollInterval: 2s
 ```
 
@@ -43,6 +43,7 @@ or:
 
 ```yaml
 # Static configuration
+# Dev mode
 entryPoints:
   web:
     address: :80
@@ -60,6 +61,7 @@ experimental:
 
 providers:
   plugin:
+    # in dev mode (`devPlugin`) the name of the plugin is always `dev`.
     dev:
       pollInterval: 2s
 ```
