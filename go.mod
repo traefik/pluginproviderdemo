@@ -1,5 +1,5 @@
 module github.com/traefik/pluginproviderdemo
 
-go 1.15
+go 1.16
 
-require github.com/traefik/genconf v0.0.0-20210122120711-a2bf09240729
+require github.com/traefik/genconf v0.1.0

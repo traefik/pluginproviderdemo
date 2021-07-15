@@ -29,14 +29,6 @@ type HTTPConfiguration struct {
 }
 
 type HealthCheck struct {
-	Scheme          string            `json:"scheme,omitempty"`
-	Path            string            `json:"path,omitempty"`
-	Port            int               `json:"port,omitempty"`
-	Interval        string            `json:"interval,omitempty"`
-	Timeout         string            `json:"timeout,omitempty"`
-	Hostname        string            `json:"hostname,omitempty"`
-	FollowRedirects *bool             `json:"followRedirects"`
-	Headers         map[string]string `json:"headers,omitempty"`
 }
 
 type MirrorService struct {
@@ -48,6 +40,7 @@ type Mirroring struct {
 	Service     string          `json:"service,omitempty"`
 	MaxBodySize *int64          `json:"maxBodySize,omitempty"`
 	Mirrors     []MirrorService `json:"mirrors,omitempty"`
+	HealthCheck *HealthCheck    `json:"healthCheck,omitempty"`
 }
 
 type Model struct {
@@ -75,15 +68,24 @@ type RouterTLSConfig struct {
 }
 
 type Server struct {
-	URL    string `json:"url,omitempty"`
-	Scheme string
-	Port   string
+	URL string `json:"url,omitempty"`
+}
+
+type ServerHealthCheck struct {
+	Scheme          string            `json:"scheme,omitempty"`
+	Path            string            `json:"path,omitempty"`
+	Port            int               `json:"port,omitempty"`
+	Interval        string            `json:"interval,omitempty"`
+	Timeout         string            `json:"timeout,omitempty"`
+	Hostname        string            `json:"hostname,omitempty"`
+	FollowRedirects *bool             `json:"followRedirects"`
+	Headers         map[string]string `json:"headers,omitempty"`
 }
 
 type ServersLoadBalancer struct {
 	Sticky             *Sticky             `json:"sticky,omitempty"`
 	Servers            []Server            `json:"servers,omitempty"`
-	HealthCheck        *HealthCheck        `json:"healthCheck,omitempty"`
+	HealthCheck        *ServerHealthCheck  `json:"healthCheck,omitempty"`
 	PassHostHeader     *bool               `json:"passHostHeader"`
 	ResponseForwarding *ResponseForwarding `json:"responseForwarding,omitempty"`
 	ServersTransport   string              `json:"serversTransport,omitempty"`
@@ -96,6 +98,8 @@ type ServersTransport struct {
 	Certificates        tls.Certificates    `json:"certificates,omitempty"`
 	MaxIdleConnsPerHost int                 `json:"maxIdleConnsPerHost,omitempty"`
 	ForwardingTimeouts  *ForwardingTimeouts `json:"forwardingTimeouts,omitempty"`
+	DisableHTTP2        bool                `json:"disableHTTP2,omitempty"`
+	PeerCertURI         string              `json:"peerCertURI,omitempty"`
 }
 
 type Service struct {
@@ -114,6 +118,7 @@ type WRRService struct {
 }
 
 type WeightedRoundRobin struct {
-	Services []WRRService `json:"services,omitempty"`
-	Sticky   *Sticky      `json:"sticky,omitempty"`
+	Services    []WRRService `json:"services,omitempty"`
+	Sticky      *Sticky      `json:"sticky,omitempty"`
+	HealthCheck *HealthCheck `json:"healthCheck,omitempty"`
 }

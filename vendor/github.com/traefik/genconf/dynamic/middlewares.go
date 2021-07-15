@@ -75,7 +75,6 @@ type Headers struct {
 	AccessControlAllowCredentials     bool              `json:"accessControlAllowCredentials,omitempty"`
 	AccessControlAllowHeaders         []string          `json:"accessControlAllowHeaders,omitempty"`
 	AccessControlAllowMethods         []string          `json:"accessControlAllowMethods,omitempty"`
-	AccessControlAllowOrigin          string            `json:"accessControlAllowOrigin,omitempty"`
 	AccessControlAllowOriginList      []string          `json:"accessControlAllowOriginList,omitempty"`
 	AccessControlAllowOriginListRegex []string          `json:"accessControlAllowOriginListRegex,omitempty"`
 	AccessControlExposeHeaders        []string          `json:"accessControlExposeHeaders,omitempty"`
@@ -101,6 +100,7 @@ type Headers struct {
 	PublicKey                         string            `json:"publicKey,omitempty"`
 	ReferrerPolicy                    string            `json:"referrerPolicy,omitempty"`
 	FeaturePolicy                     string            `json:"featurePolicy,omitempty"`
+	PermissionsPolicy                 string            `json:"permissionsPolicy,omitempty"`
 	IsDevelopment                     bool              `json:"isDevelopment,omitempty"`
 }
 

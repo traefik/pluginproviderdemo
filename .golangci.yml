@@ -32,6 +32,7 @@ linters:
     - interfacer # deprecated
     - maligned # deprecated
     - scopelint # deprecated
+    - golint # deprecated
     - cyclop # duplicate of gocyclo
     - bodyclose # Too many false positives: https://github.com/timakin/bodyclose/issues/30
     - dupl

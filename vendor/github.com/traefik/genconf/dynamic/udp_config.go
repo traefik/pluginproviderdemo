@@ -14,7 +14,6 @@ type UDPRouter struct {
 
 type UDPServer struct {
 	Address string `json:"address,omitempty"`
-	Port    string
 }
 
 type UDPServersLoadBalancer struct {

@@ -18,12 +18,14 @@ type RouterTCPTLSConfig struct {
 }
 
 type TCPConfiguration struct {
-	Routers  map[string]*TCPRouter  `json:"routers,omitempty"`
-	Services map[string]*TCPService `json:"services,omitempty"`
+	Routers     map[string]*TCPRouter     `json:"routers,omitempty"`
+	Services    map[string]*TCPService    `json:"services,omitempty"`
+	Middlewares map[string]*TCPMiddleware `json:"middlewares,omitempty"`
 }
 
 type TCPRouter struct {
 	EntryPoints []string            `json:"entryPoints,omitempty"`
+	Middlewares []string            `json:"middlewares,omitempty"`
 	Service     string              `json:"service,omitempty"`
 	Rule        string              `json:"rule,omitempty"`
 	TLS         *RouterTCPTLSConfig `json:"tls,omitempty"`
@@ -31,7 +33,6 @@ type TCPRouter struct {
 
 type TCPServer struct {
 	Address string `json:"address,omitempty"`
-	Port    string
 }
 
 type TCPServersLoadBalancer struct {

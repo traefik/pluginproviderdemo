@@ -1,4 +1,4 @@
-# github.com/traefik/genconf v0.0.0-20210122120711-a2bf09240729
+# github.com/traefik/genconf v0.1.0
 ## explicit
 github.com/traefik/genconf/dynamic
 github.com/traefik/genconf/dynamic/tls
