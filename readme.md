@@ -13,7 +13,7 @@ If an error occurs during loading, the plugin is disabled.
 
 For security reasons, it is not possible to start a new plugin or modify an existing one while Traefik is running.
 
-Plugin dependencies must be [vendored](https://golang.org/ref/mod#tmp_25) for each plugin.
+Plugin dependencies must be [vendored](https://golang.org/ref/mod#vendoring) for each plugin.
 Vendored packages should be included in the plugin's GitHub repository. ([Go modules](https://blog.golang.org/using-go-modules) are not supported.)
 
 ### Configuration
@@ -39,11 +39,52 @@ providers:
       pollInterval: 2s
 ```
 
-or:
+#### Local Mode
+
+Traefik also offers a developer mode that can be used for temporary testing of plugins not hosted on GitHub.
+To use a plugin in local mode, the Traefik static configuration must define the module name (as is usual for Go packages) and a path to a [Go workspace](https://golang.org/doc/gopath_code.html#Workspaces), which can be the local GOPATH or any directory.
+
+The plugins must be placed in `./plugins-local` directory, which should be next to the Traefik binary.
+The source code of the plugin should be organized as follows:
+
+```
+./plugins-local/
+    └── src
+        └── github.com
+            └── traefik
+                └── pluginproviderdemo
+                    ├── demo.go
+                    ├── demo_test.go
+                    ├── go.mod
+                    ├── go.sum
+                    ├── LICENSE
+                    ├── Makefile
+                    ├── readme.md
+                    └── vendor
+                        ├── github.com
+                        │   └── traefik
+                        │       └── genconf
+                        │           ├── dynamic
+                        │           │   ├── config.go
+                        │           │   ├── http_config.go
+                        │           │   ├── marshaler.go
+                        │           │   ├── middlewares.go
+                        │           │   ├── plugins.go
+                        │           │   ├── tcp_config.go
+                        │           │   ├── tls
+                        │           │   │   ├── certificate.go
+                        │           │   │   └── tls.go
+                        │           │   ├── types
+                        │           │   │   ├── domains.go
+                        │           │   │   └── tls.go
+                        │           │   └── udp_config.go
+                        │           └── LICENSE
+                        └── modules.txt
+```
 
 ```yaml
 # Static configuration
-# Dev mode
+# Local mode
 entryPoints:
   web:
     address: :80
@@ -51,20 +92,18 @@ entryPoints:
 log:
   level: DEBUG
 
-pilot:
-  token: xxxxx
-
 experimental:
-  devPlugin:
-    goPath: /plugins/go
-    moduleName: github.com/traefik/pluginproviderdemo
+  localPlugins:
+    example:
+      moduleName: github.com/traefik/pluginproviderdemo
 
 providers:
   plugin:
-    # in dev mode (`devPlugin`) the name of the plugin is always `dev`.
-    dev:
+    example:
       pollInterval: 2s
 ```
+
+(In the above example, the `pluginproviderdemo` plugin will be loaded from the path `./plugins-local/src/github.com/traefik/pluginproviderdemo`.)
 
 ## Defining a Plugin
 
