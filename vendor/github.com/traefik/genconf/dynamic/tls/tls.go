@@ -20,6 +20,7 @@ type Options struct {
 	ClientAuth               ClientAuth `json:"clientAuth,omitempty"`
 	SniStrict                bool       `json:"sniStrict,omitempty"`
 	PreferServerCipherSuites bool       `json:"preferServerCipherSuites,omitempty"`
+	ALPNProtocols            []string   `json:"alpnProtocols,omitempty"`
 }
 
 type Store struct {

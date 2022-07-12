@@ -6,6 +6,11 @@ type TCPIPWhiteList struct {
 	SourceRange []string `json:"sourceRange,omitempty"`
 }
 
+type TCPInFlightConn struct {
+	Amount int64 `json:"amount,omitempty"`
+}
+
 type TCPMiddleware struct {
-	IPWhiteList *TCPIPWhiteList `json:"ipWhiteList,omitempty"`
+	InFlightConn *TCPInFlightConn `json:"inFlightConn,omitempty"`
+	IPWhiteList  *TCPIPWhiteList  `json:"ipWhiteList,omitempty"`
 }

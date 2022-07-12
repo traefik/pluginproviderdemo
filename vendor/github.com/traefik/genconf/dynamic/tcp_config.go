@@ -28,6 +28,7 @@ type TCPRouter struct {
 	Middlewares []string            `json:"middlewares,omitempty"`
 	Service     string              `json:"service,omitempty"`
 	Rule        string              `json:"rule,omitempty"`
+	Priority    int                 `json:"priority,omitempty"`
 	TLS         *RouterTCPTLSConfig `json:"tls,omitempty"`
 }
 

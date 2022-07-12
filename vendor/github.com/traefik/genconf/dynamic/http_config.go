@@ -14,10 +14,18 @@ type Cookie struct {
 	SameSite string `json:"sameSite,omitempty"`
 }
 
+type Failover struct {
+	Service     string       `json:"service,omitempty"`
+	Fallback    string       `json:"fallback,omitempty"`
+	HealthCheck *HealthCheck `json:"healthCheck,omitempty"`
+}
+
 type ForwardingTimeouts struct {
 	DialTimeout           string `json:"dialTimeout,omitempty"`
 	ResponseHeaderTimeout string `json:"responseHeaderTimeout,omitempty"`
 	IdleConnTimeout       string `json:"idleConnTimeout,omitempty"`
+	ReadIdleTimeout       string `json:"readIdleTimeout,omitempty"`
+	PingTimeout           string `json:"pingTimeout,omitempty"`
 }
 
 type HTTPConfiguration struct {
@@ -106,6 +114,7 @@ type Service struct {
 	LoadBalancer *ServersLoadBalancer `json:"loadBalancer,omitempty"`
 	Weighted     *WeightedRoundRobin  `json:"weighted,omitempty"`
 	Mirroring    *Mirroring           `json:"mirroring,omitempty"`
+	Failover     *Failover            `json:"failover,omitempty"`
 }
 
 type Sticky struct {
