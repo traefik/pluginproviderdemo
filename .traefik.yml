@@ -1,5 +1,6 @@
 displayName: Provider Plugin Demo
 type: provider
+iconPath: .assets/icon.png
 
 import: github.com/traefik/pluginproviderdemo
 
