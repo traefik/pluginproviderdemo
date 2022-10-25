@@ -202,9 +202,9 @@ type TLSClientCertificateInfo struct {
 	NotAfter     bool                               `json:"notAfter,omitempty"`
 	NotBefore    bool                               `json:"notBefore,omitempty"`
 	Sans         bool                               `json:"sans,omitempty"`
+	SerialNumber bool                               `json:"serialNumber,omitempty"`
 	Subject      *TLSClientCertificateSubjectDNInfo `json:"subject,omitempty"`
 	Issuer       *TLSClientCertificateIssuerDNInfo  `json:"issuer,omitempty"`
-	SerialNumber bool                               `json:"serialNumber,omitempty"`
 }
 
 type TLSClientCertificateIssuerDNInfo struct {

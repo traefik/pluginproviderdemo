@@ -82,6 +82,7 @@ type Server struct {
 type ServerHealthCheck struct {
 	Scheme          string            `json:"scheme,omitempty"`
 	Path            string            `json:"path,omitempty"`
+	Method          string            `json:"method,omitempty"`
 	Port            int               `json:"port,omitempty"`
 	Interval        string            `json:"interval,omitempty"`
 	Timeout         string            `json:"timeout,omitempty"`

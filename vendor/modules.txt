@@ -1,4 +1,4 @@
-# github.com/traefik/genconf v0.2.0
+# github.com/traefik/genconf v0.3.0
 ## explicit; go 1.17
 github.com/traefik/genconf/dynamic
 github.com/traefik/genconf/dynamic/tls
