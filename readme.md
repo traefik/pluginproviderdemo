@@ -191,6 +191,12 @@ func (p *Provider) Stop() error {
 }
 ```
 
+## Logs
+
+Currently, the only way to send logs to Traefik is to use `os.Stdout.WriteString("...")` or `os.Stderr.WriteString("...")`.
+
+In the future, we will try to provide something better and based on levels.
+
 ## Plugins Catalog
 
 Traefik plugins are stored and hosted as public GitHub repositories.
